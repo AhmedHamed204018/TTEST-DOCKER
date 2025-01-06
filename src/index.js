@@ -1,7 +1,7 @@
 const express = require('express');
-// const { connection, connections } = require('mongoose');
-// const mongoose = require('mongoose');
-const { Client } = require('pg');
+const { connection, connections } = require('mongoose');
+const mongoose = require('mongoose');
+// const { Client } = require('pg');
 const redis = require('redis');
 
 
@@ -21,35 +21,35 @@ redisclient.on('error', (err) => console.error('Error connecting to redis:', err
 redisclient.on('connect', () => console.log('connected to redis successfully....'));
 redisclient.connect();
 // connect db mongo
-// const DB_USERNAME = 'root';
-// const DB_PASS = 'example';
-// const DB_PORT = 27017;
-// const DB_HOST = 'mongo';
+const DB_USERNAME = 'root';
+const DB_PASS = 'example';
+const DB_PORT = 27017;
+const DB_HOST = 'mongo';
 
-// const URI = `mongodb://${DB_USERNAME}:${DB_PASS}@${DB_HOST}:${DB_PORT}`;
-// mongoose.connect(URI).then(() => console.log('Connected to MongoDB successfully!'))
-// .catch((err) => console.error('Error connecting to MongoDB:', err));
+const URI = `mongodb://${DB_USERNAME}:${DB_PASS}@${DB_HOST}:${DB_PORT}`;
+mongoose.connect(URI).then(() => console.log('Connected to MongoDB successfully!'))
+.catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // connect db postgres
 
-const DB_USERNAME = 'root';  // اسم المستخدم
-const DB_PASS = 'example';   // كلمة المرور
-const DB_PORT = 5432;        // البورت
-const DB_HOST = 'postgres';  // المضيف (قد يكون localhost أو اسم الخدمة)
-const DB_NAME = 'mydb';      // اسم قاعدة البيانات
+// const DB_USERNAME = 'root';  // اسم المستخدم
+// const DB_PASS = 'example';   // كلمة المرور
+// const DB_PORT = 5432;        // البورت
+// const DB_HOST = 'postgres';  // المضيف (قد يكون localhost أو اسم الخدمة)
+// const DB_NAME = 'mydb';      // اسم قاعدة البيانات
 
-const URI = `postgresql://${DB_USERNAME}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+// const URI = `postgresql://${DB_USERNAME}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
-// تهيئة العميل باستخدام URI
-const client = new Client({
-  connectionString: URI, // استخدم connectionString هنا
-});
+// // تهيئة العميل باستخدام URI
+// const client = new Client({
+//   connectionString: URI, // استخدم connectionString هنا
+// });
 
-// محاولة الاتصال
-client
-  .connect()
-  .then(() => console.log('Connected to PostgreSQL successfully!'))
-  .catch((err) => console.error('Error connecting to PostgreSQL:', err));
+// // محاولة الاتصال
+// client
+//   .connect()
+//   .then(() => console.log('Connected to PostgreSQL successfully!'))
+//   .catch((err) => console.error('Error connecting to PostgreSQL:', err));
   
 app.get('/', (req, res)=> {
     redisclient.set('products', 'product...');
